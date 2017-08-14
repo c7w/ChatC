@@ -17,6 +17,24 @@ public class Data {
 		
 	}
 	
+	public static String[] setData(String pn,UUID uuid,String dn,String value){
+		
+		String[] a = {"",""};
+		if (!(uuid.toString().equals(Chat.data.getString(pn+".uuid")))){
+			createUser(pn,uuid);
+		    a[1] = "setNewPlayer";
+		}
+		
+		String path = pn + "." + dn;
+		
+		Chat.data.set(path,value);
+		a[0] = "hasSet";
+		
+		return a;
+		
+		
+	}
+	
 	public static String[] userInfo(String pn,UUID uuid){
 		
 		if (uuid.toString().equals(Chat.data.getString(pn+".uuid"))){
