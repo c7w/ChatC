@@ -1,5 +1,5 @@
 author: c7w
-version: 0.2
+version: 0.21
 name: ChatC
 main: cf.cc7w.Chat.Chat
 softdepend: []
@@ -7,3 +7,6 @@ commands:
   chatc:
     usage: ''
     permission: ''
+permissions:
+  chatc.admin:
+    default: op

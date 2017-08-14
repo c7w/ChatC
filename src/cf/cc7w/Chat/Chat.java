@@ -26,7 +26,7 @@ public class Chat extends JavaPlugin implements Listener{
 	public void onEnable(){
 
 		System.out.println("[ChatC] 聊天管理插件已启用！");
-		System.out.println("[ChatC] 聊天管理插件当前版本：V0.2 （2017年8月14日）");
+		System.out.println("[ChatC] 聊天管理插件当前版本：V0.21 （2017年8月14日）");
 		System.out.println("[ChatC] 感谢您的使用！");
 		
 		getServer().getPluginManager().registerEvents(this, this);
