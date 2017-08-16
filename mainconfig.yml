@@ -1,1 +1,7 @@
-version: 0.21
+version: 0.3
+default:
+  prefix: ''
+  suffix: ''
+  format: '<pre><player><suf> >> <message>'
+settings:
+  auto-save: true

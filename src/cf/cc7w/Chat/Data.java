@@ -7,13 +7,19 @@ import java.util.UUID;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 public class Data {
+	
+	public static String defaultPrefix = Chat.main.getString("default.prefix");
+	public static String defaultSuffix = Chat.main.getString("default.suffix");
+	public static String defaultFormat = Chat.main.getString("default.format");
 
 	public static void createUser(String pn,UUID uuid){
 		
 		Chat.data.set(pn + ".uuid", uuid.toString());
-		Chat.data.set(pn + ".prefix", "");
-		Chat.data.set(pn + ".suffix", "");
-		Chat.data.set(pn + ".format", "<pre><player><suf> >> <message>");
+		Chat.data.set(pn + ".prefix", defaultPrefix);
+		Chat.data.set(pn + ".suffix", defaultSuffix);
+		Chat.data.set(pn + ".format", defaultFormat);
+		
+		trySaveData();
 		
 	}
 	
@@ -30,10 +36,20 @@ public class Data {
 		Chat.data.set(path,value);
 		a[0] = "hasSet";
 		
+		trySaveData();
+		
 		return a;
 		
 		
 	}
+	
+	public static void resetData(UUID uuid,String dn){
+		
+		createUser(dn,uuid);
+		trySaveData();
+		
+	}
+	
 	
 	public static String[] userInfo(String pn,UUID uuid){
 		
@@ -77,6 +93,22 @@ public class Data {
 		Chat.data = YamlConfiguration.loadConfiguration(dataf);
 			
 		}
+	
+	public static void trySaveData(){
+		
+		Boolean auto = Chat.main.getBoolean("settings.auto-save");
+		if(auto){
+			
+			saveData();
+			return;
+			
+		}else{
+			
+			return;
+			
+		}
+		
+	}
 	
 }
 	

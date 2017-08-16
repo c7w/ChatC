@@ -26,7 +26,7 @@ public class Chat extends JavaPlugin implements Listener{
 	public void onEnable(){
 
 		System.out.println("[ChatC] 聊天管理插件已启用！");
-		System.out.println("[ChatC] 聊天管理插件当前版本：V0.21 （2017年8月14日）");
+		System.out.println("[ChatC] 聊天管理插件当前版本：V0.3 （2017年8月16日）");
 		System.out.println("[ChatC] 感谢您的使用！");
 		
 		getServer().getPluginManager().registerEvents(this, this);
@@ -43,6 +43,23 @@ public class Chat extends JavaPlugin implements Listener{
 		System.out.println("[ChatC] 感谢您的使用！");
 		
     }
+	
+	public void defaultConf(String s){
+		if(s.equalsIgnoreCase("m")){
+			saveResource("mainconfig.yml", true);
+		}
+		if(s.equalsIgnoreCase("d")){
+			saveResource("data.yml", true);
+		}
+	}
+	
+	public static void reloadMainConf(){
+		
+		File mainf = new File("plugins/ChatC/mainconfig.yml");
+        main = YamlConfiguration.loadConfiguration(mainf);
+        //System.out.println(main.getString("default.format"));
+		
+	}
 	
 	public void loadConf(){
 		
@@ -77,6 +94,23 @@ public class Chat extends JavaPlugin implements Listener{
 		mversion = main.getString("version");
 		dversion = data.getString("version");
 		
+		if(mversion.equalsIgnoreCase("0.21")){
+			
+			System.out.println("[ChatC] 检测到配置文件版本错误，正在为您更新……");
+			System.out.println("[ChatC] 0.21 → 0.3");
+			
+			Conf.updateConfig("0.21");
+			
+			if(!mainf.exists()){
+				
+				saveResource("mainconfig.yml", true);
+				mainf = new File(getDataFolder(),"mainconfig.yml");
+				
+			}
+			
+			
+		}
+		
 		//System.out.println("M: "+ mversion );
 		//System.out.println("D: "+ dversion );
 		
@@ -92,13 +126,37 @@ public class Chat extends JavaPlugin implements Listener{
 		
 		String[] s = Data.userInfo(pn, uuid);
 		
+		if(p.hasPermission("chatc.color")){
+			smessage = smessage.replaceAll("&1", "§1");
+			smessage = smessage.replaceAll("&2", "§2");
+			smessage = smessage.replaceAll("&3", "§3");
+			smessage = smessage.replaceAll("&4", "§4");
+			smessage = smessage.replaceAll("&5", "§5");
+			smessage = smessage.replaceAll("&6", "§6");
+			smessage = smessage.replaceAll("&7", "§7");
+			smessage = smessage.replaceAll("&8", "§8");
+			smessage = smessage.replaceAll("&9", "§9");
+			smessage = smessage.replaceAll("&0", "§0");
+			smessage = smessage.replaceAll("&a", "§a");
+			smessage = smessage.replaceAll("&b", "§b");
+			smessage = smessage.replaceAll("&c", "§c");
+			smessage = smessage.replaceAll("&d", "§d");
+			smessage = smessage.replaceAll("&e", "§e");
+			smessage = smessage.replaceAll("&f", "§f");
+			smessage = smessage.replaceAll("&l", "§l");
+			smessage = smessage.replaceAll("&k", "§k");
+			smessage = smessage.replaceAll("&n", "§n");
+			smessage = smessage.replaceAll("&m", "§m");
+			smessage = smessage.replaceAll("&o", "§o");
+			smessage = smessage.replaceAll("&r", "§r");
+		}
+		
 		String message = s[2]
 				.replaceAll("<pre>", s[0])
 				.replaceAll("<suf>", s[1])
 				.replaceAll("&", "§")
 				.replaceAll("<player>", pn)
 				.replaceAll("<message>", smessage);
-		
 		
 		evt.setCancelled(true);
 		Bukkit.getServer().broadcastMessage(message);
