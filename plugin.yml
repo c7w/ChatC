@@ -1,8 +1,8 @@
 author: c7w
-version: 0.3
+version: 0.4
 name: ChatC
-main: cf.cc7w.Chat.Chat
-softdepend: []
+main: cf.cc7w.ChatC.ChatC
+softdepend: [PlaceholderAPI,Vault]
 commands:
   chatc:
     usage: ''

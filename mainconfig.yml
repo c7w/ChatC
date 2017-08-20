@@ -1,7 +1,19 @@
-version: 0.3
+#插件的版本信息-请勿更改
+version: 0.4
+#插件是否连接其他已安装插件
+hook:
+  PlaceholderAPI: true
+  Vault: true
+#默认的配置
 default:
   prefix: ''
   suffix: ''
   format: '<pre><player><suf> >> <message>'
+#设置
 settings:
+  #是否开启自动保存
   auto-save: true
+#决定插件使用前缀后缀顺序的优先级
+# 1 - Vault优先,在Vault中没有注册的前缀或后缀时使用本插件所设置的前缀与后缀
+# 2 - 强制使用本插件所提供的前缀与后缀
+priority: 1
