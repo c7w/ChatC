@@ -18,6 +18,9 @@ public class Data {
 		ChatC.data.set(pn + ".prefix", defaultPrefix);
 		ChatC.data.set(pn + ".suffix", defaultSuffix);
 		ChatC.data.set(pn + ".format", defaultFormat);
+		ChatC.data.set(pn + ".mute.isMuted", false);
+		ChatC.data.set(pn + ".mute.StartTime", Util.getTime());
+		ChatC.data.set(pn + ".mute.Time", 0);
 		
 		trySaveData();
 		

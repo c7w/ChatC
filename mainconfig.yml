@@ -1,5 +1,5 @@
 #插件的版本信息-请勿更改
-version: 0.4
+version: 0.5
 #插件是否连接其他已安装插件
 hook:
   PlaceholderAPI: true
@@ -17,3 +17,7 @@ settings:
 # 1 - Vault优先,在Vault中没有注册的前缀或后缀时使用本插件所设置的前缀与后缀
 # 2 - 强制使用本插件所提供的前缀与后缀
 priority: 1
+#插件的消息提示
+message:
+  isMuted: '§a[§e§lChat§5§lC§a] §c您现在正在禁言中！详情请输入 §e/chatc info §c进行查询！'
+  noPermission: '§a[§e§lChat§5§lC§a] §c您没有权限！'

@@ -1,5 +1,5 @@
 author: c7w
-version: 0.4
+version: 0.5
 name: ChatC
 main: cf.cc7w.ChatC.ChatC
 softdepend: [PlaceholderAPI,Vault]
@@ -12,3 +12,11 @@ permissions:
     default: op
   chatc.color:
     default: op
+  chatc.help:
+    default: op
+  chatc.file:
+    default: op
+  chatc.user:
+    default: op
+  chatc.info:
+    default: true

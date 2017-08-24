@@ -31,7 +31,7 @@ public class ChatC extends JavaPlugin implements Listener{
 	public void onEnable(){
 
 		System.out.println("[ChatC] 聊天管理插件已启用！");
-		System.out.println("[ChatC] 聊天管理插件当前版本：V0.4 （2017年8月20日）");
+		System.out.println("[ChatC] 聊天管理插件当前版本：V0.5 （2017年8月24日）");
 		System.out.println("[ChatC] 感谢您的使用！");
 		
 		getServer().getPluginManager().registerEvents(this, this);
@@ -55,9 +55,6 @@ public class ChatC extends JavaPlugin implements Listener{
 			VaultHook.setupChat();
 			
 		}
-		
-		
-		
 		
 		
 	}
@@ -123,7 +120,7 @@ public class ChatC extends JavaPlugin implements Listener{
 		if(mversion.equalsIgnoreCase("0.21")){
 			
 			System.out.println("[ChatC] 检测到配置文件版本错误，正在为您更新……");
-			System.out.println("[ChatC] 0.21 → 0.3");
+			System.out.println("[ChatC] 0.21 → 0.5");
 			
 			Conf.updateConfig("0.21");
 			
@@ -140,9 +137,26 @@ public class ChatC extends JavaPlugin implements Listener{
 		if(mversion.equalsIgnoreCase("0.3")){
 			
 			System.out.println("[ChatC] 检测到配置文件版本错误，正在为您更新……");
-			System.out.println("[ChatC] 0.3 → 0.4");
+			System.out.println("[ChatC] 0.3 → 0.5");
 			
 			Conf.updateConfig("0.3");
+			
+			if(!mainf.exists()){
+				
+				saveResource("mainconfig.yml", true);
+				mainf = new File(getDataFolder(),"mainconfig.yml");
+				
+			}
+			
+			
+		}
+		
+		if(mversion.equalsIgnoreCase("0.4")){
+			
+			System.out.println("[ChatC] 检测到配置文件版本错误，正在为您更新……");
+			System.out.println("[ChatC] 0.4 → 0.5");
+			
+			Conf.updateConfig("0.4");
 			
 			if(!mainf.exists()){
 				
@@ -167,6 +181,15 @@ public class ChatC extends JavaPlugin implements Listener{
 		String smessage = evt.getMessage();
 		String pn = p.getName();
 		UUID uuid = p.getUniqueId();
+		
+		if(Mute.getMuted(pn)){
+			
+			evt.setCancelled(true);
+			String isMutedMessage = Conf.main.getString("message.isMuted");
+			p.sendMessage(isMutedMessage);
+			return;
+			
+		}
 		
 		String[] s = Data.userInfo(pn, uuid);
 		
