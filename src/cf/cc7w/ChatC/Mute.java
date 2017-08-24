@@ -131,7 +131,7 @@ public class Mute {
 		minute = minute + hour * 60;
 		second = second + minute * 60;
 		
-		System.out.println(second);
+		//System.out.println(second);
 		
 		return second;
 	}
